@@ -1,0 +1,27 @@
+h1. A GitHub Web Repository Viewer Plugin for the Bamboo build server
+
+Version 1.0.0
+
+Links GitHub repository changes back to the GitHub page containing the commit/diff.
+
+Works with Bamboo version 2.2 or greater.
+* Tested on Ubuntu and OSX. Should work on Windows!
+
+Tested on Bamboo version 2.7.3. More information on the "project wiki":http://wiki.github.com/andypols/git-bamboo-plugin.
+
+NOTE: The trigger on change feature has stopped working since github moved from engineyard to rackspace. Bamboo's  TriggerRemoteBuild checks that the IP address of the source repository matches the IP address of the build trigger. The trigger now *comes from a different IP and is rejected by Bamboo*. I have raised the following jira with the bamboo team: "BAM-4713":http://jira.atlassian.com/browse/BAM-4713.  Vote on it to get it fixed!!!  The short term fix is to poll for changes instead.
+
+h2. Bamboo Compatibility
+
+|_. File |_. Bamboo Version |
+| ***-1.0.0.jar | 3.0                 |
+
+h2. Installation
+
+Copy the *** jar to @$BAMBOO_INSTALL_DIR/webapp/WEB-INF/lib@.
+
+h2. Build from source
+
+Define the @bamboo.server.lib@ value in the @build.xml@ so the build has access to the bamboo jars (Bamboo is commercial, so I can't include them the github repository).
+
+Run the @ant all@ task.
