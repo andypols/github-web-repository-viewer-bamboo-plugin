@@ -61,31 +61,23 @@ public class GitHubWebRepositoryViewer extends DefaultWebRepositoryViewer implem
         return webRepositoryUrl;
     }
 
-//    public String getWebRepositoryUrlForFile(CommitFile commitFile) {
-//        return webRepositoryUrl + "/blob/" + commitFile.getRevision() + "/" + commitFile.getName();
-//    }
-
     @Override
     public String getWebRepositoryUrlForFile(CommitFile file, Repository repository) {
-        log.error("************** GitHubWebRepositoryViewer.getWebRepositoryUrlForFile");
-        return webRepositoryUrl + "/commit/" + commitIdFor(file);
+        return webRepositoryUrl + "/blob/" + file.getRevision() + "/" + file.getName();
     }
 
     @Override
     public String getWebRepositoryUrlForRevision(CommitFile file, Repository repository) {
-        log.error("************** GitHubWebRepositoryViewer.getWebRepositoryUrlForRevision");
         return webRepositoryUrl + "/commit/" + commitIdFor(file);
     }
 
     @Override
     public String getWebRepositoryUrlForDiff(CommitFile file, Repository repository) {
-        log.error("************** GitHubWebRepositoryViewer.getWebRepositoryUrlForDiff");
         return webRepositoryUrl + "/commit/" + commitIdFor(file);
     }
 
     @Override
     public Map<Commit, String> getWebRepositoryUrlForCommits(Collection<Commit> commits, Repository repository) {
-        log.error("************** GitHubWebRepositoryViewer.getWebRepositoryUrlForCommits");
         Map<Commit, String> results = new HashMap<Commit, String>();
         for (Commit commit : commits) {
             results.put(commit, webRepositoryUrl + "/commit/" + commit);
@@ -95,7 +87,6 @@ public class GitHubWebRepositoryViewer extends DefaultWebRepositoryViewer implem
     }
 
     public String getWebRepositoryUrlForCommit(Commit commit, Repository repository) {
-        log.error("************** GitHubWebRepositoryViewer.getWebRepositoryUrlForCommit");
         return webRepositoryUrl + "/commit/" + commitIdFor(commit);
     }
 
