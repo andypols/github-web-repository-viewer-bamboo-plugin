@@ -10,21 +10,19 @@ import com.atlassian.bamboo.ww2.actions.build.admin.create.BuildConfiguration;
 import com.opensymphony.util.UrlUtils;
 import org.apache.commons.configuration.HierarchicalConfiguration;
 import org.apache.commons.lang.StringUtils;
-import org.apache.log4j.Logger;
 
 import java.util.*;
 
 public class GitHubWebRepositoryViewer extends DefaultWebRepositoryViewer implements CommitUrlProvider {
-    private static final Logger log = Logger.getLogger(GitHubWebRepositoryViewer.class);
-
     public static final String REPO_PREFIX = "repository.githubplugin.";
     public static final String WEB_REPO_URL = REPO_PREFIX + "webRepositoryUrl";
+    private static final String ATLASSIAN_GIT_PLUGIN_KEY = "com.atlassian.bamboo.plugins.atlassian-bamboo-plugin-git:git";
 
     private String webRepositoryUrl;
 
     @Override
     public Collection<String> getSupportedRepositories() {
-        return Arrays.asList("com.atlassian.bamboo.plugins.atlassian-bamboo-plugin-git:git");
+        return Arrays.asList(ATLASSIAN_GIT_PLUGIN_KEY);
     }
 
     @Override
@@ -68,26 +66,26 @@ public class GitHubWebRepositoryViewer extends DefaultWebRepositoryViewer implem
 
     @Override
     public String getWebRepositoryUrlForRevision(CommitFile file, Repository repository) {
-        return webRepositoryUrl + "/commit/" + commitIdFor(file);
+        return githubCommitUrl(commitIdFor(file));
     }
 
     @Override
     public String getWebRepositoryUrlForDiff(CommitFile file, Repository repository) {
-        return webRepositoryUrl + "/commit/" + commitIdFor(file);
+        return githubCommitUrl(commitIdFor(file));
     }
 
     @Override
     public Map<Commit, String> getWebRepositoryUrlForCommits(Collection<Commit> commits, Repository repository) {
         Map<Commit, String> results = new HashMap<Commit, String>();
         for (Commit commit : commits) {
-            results.put(commit, webRepositoryUrl + "/commit/" + commit);
+            results.put(commit, githubCommitUrl(commitIdFor(commit)));
         }
 
         return results;
     }
 
     public String getWebRepositoryUrlForCommit(Commit commit, Repository repository) {
-        return webRepositoryUrl + "/commit/" + commitIdFor(commit);
+        return githubCommitUrl(commitIdFor(commit));
     }
 
     private String commitIdFor(Commit commit) {
@@ -100,5 +98,9 @@ public class GitHubWebRepositoryViewer extends DefaultWebRepositoryViewer implem
 
     private String commitIdFor(CommitFile file) {
         return file.getRevision();
+    }
+
+    private String githubCommitUrl(String commitId) {
+        return webRepositoryUrl + "/commit/" + commitId;
     }
 }

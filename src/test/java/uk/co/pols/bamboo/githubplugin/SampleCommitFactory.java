@@ -3,9 +3,11 @@ package uk.co.pols.bamboo.githubplugin;
 import com.atlassian.bamboo.commit.CommitImpl;
 import com.atlassian.bamboo.commit.CommitFileImpl;
 
+import java.util.Date;
+
 public class SampleCommitFactory {
-    public static CommitImpl commitWithFile(String revision) {
-        CommitImpl commit = new CommitImpl();
+    public static CommitImpl commitWithSingleFile(String revision, String author, String comment) {
+        CommitImpl commit = new CommitImpl(author, comment, new Date());
         commit.addFile(commitFile(revision));
         return commit;
     }
