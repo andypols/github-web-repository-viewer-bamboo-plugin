@@ -49,6 +49,7 @@
         <echo message="Copying Bamboo jars from ${bamboo.server.lib}"/>
         <copy todir="lib">
             <fileset dir="${bamboo.server.lib}">
+                <include name="atlassian-core-*.jar"/>
                 <include name="atlassian-bamboo-api-*.jar"/>
                 <include name="atlassian-bamboo-core-*.jar"/>
                 <include name="atlassian-bamboo-plugin-git-*.jar"/>
