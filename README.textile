@@ -2,12 +2,11 @@ h1. A GitHub Web Repository Viewer Plugin for the Bamboo build server
 
 Version 1.0.0
 
-Links GitHub repository changes back to the GitHub page containing the commit/diff.  Works with Bamboo's built-in git repository.
+Links GitHub repository changes back to the GitHub page containing the commit/diff.
 
-Works with Bamboo version 3.0 or greater.
-* Tested on Ubuntu and OSX. Should work on Windows!
+Designed to work with Bamboo's built-in git repository (Bamboo version 3.0 or greater).
 
-Tested on Bamboo version 3.0.  More information on the "project wiki":http://wiki.github.com/andypols/github-web-repository-viewer-bamboo-plugin.
+More information on the "project wiki":http://wiki.github.com/andypols/github-web-repository-viewer-bamboo-plugin.
 
 h2. Bamboo Compatibility
 
