@@ -8,7 +8,7 @@
     <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  -->
     <property name="bamboo.server.lib" value="/Applications/Bamboo/webapp/WEB-INF/lib/"/>
 
-    <property name="release.version" value="1.0.0"/>
+    <property name="release.version" value="1.0.1"/>
 
     <patternset id="compiler.resources">
         <include name="**/?*.properties"/>
@@ -54,13 +54,13 @@
                 <include name="atlassian-bamboo-core-*.jar"/>
                 <include name="atlassian-bamboo-plugin-git-*.jar"/>
                 <include name="atlassian-util-concurrent-*.jar"/>
+                <include name="atlassian-spring-*.jar"/>
                 <include name="commons-configuration-*.jar"/>
                 <include name="commons-logging-*.jar"/>
                 <include name="commons-lang-*.jar"/>
                 <include name="oscore-*.jar"/>
-                <include name="google-collections-*.jar"/>
                 <include name="log4j-*.jar"/>
-                <include name="junit-*.jar"/>
+                <include name="guava-*.jar"/>
             </fileset>
         </copy>
     </target>

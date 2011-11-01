@@ -2,7 +2,7 @@ package uk.co.pols.bamboo.githubplugin;
 
 import com.atlassian.bamboo.commit.Commit;
 import com.atlassian.bamboo.commit.CommitFile;
-import com.atlassian.bamboo.repository.Repository;
+import com.atlassian.bamboo.repository.RepositoryDefinition;
 import com.atlassian.bamboo.utils.error.ErrorCollection;
 import com.atlassian.bamboo.webrepository.CommitUrlProvider;
 import com.atlassian.bamboo.webrepository.DefaultWebRepositoryViewer;
@@ -17,12 +17,13 @@ public class GitHubWebRepositoryViewer extends DefaultWebRepositoryViewer implem
     public static final String REPO_PREFIX = "repository.githubplugin.";
     public static final String WEB_REPO_URL = REPO_PREFIX + "webRepositoryUrl";
     private static final String ATLASSIAN_GIT_PLUGIN_KEY = "com.atlassian.bamboo.plugins.atlassian-bamboo-plugin-git:git";
+    private static final String ATLASSIAN_GITHUB_PLUGIN_KEY = "com.atlassian.bamboo.plugins.atlassian-bamboo-plugin-git:gh";
 
     private String webRepositoryUrl;
 
     @Override
     public Collection<String> getSupportedRepositories() {
-        return Arrays.asList(ATLASSIAN_GIT_PLUGIN_KEY);
+        return Arrays.asList(ATLASSIAN_GIT_PLUGIN_KEY, ATLASSIAN_GITHUB_PLUGIN_KEY);
     }
 
     @Override
@@ -60,22 +61,22 @@ public class GitHubWebRepositoryViewer extends DefaultWebRepositoryViewer implem
     }
 
     @Override
-    public String getWebRepositoryUrlForFile(CommitFile file, Repository repository) {
+    public String getWebRepositoryUrlForFile(CommitFile file, RepositoryDefinition repositoryDefinition) {
         return webRepositoryUrl + "/blob/" + file.getRevision() + "/" + file.getName();
     }
 
     @Override
-    public String getWebRepositoryUrlForRevision(CommitFile file, Repository repository) {
+    public String getWebRepositoryUrlForRevision(CommitFile file, RepositoryDefinition repositoryDefinition) {
         return githubCommitUrl(commitIdFor(file));
     }
 
     @Override
-    public String getWebRepositoryUrlForDiff(CommitFile file, Repository repository) {
+    public String getWebRepositoryUrlForDiff(CommitFile file, RepositoryDefinition repositoryDefinition) {
         return githubCommitUrl(commitIdFor(file));
     }
 
     @Override
-    public Map<Commit, String> getWebRepositoryUrlForCommits(Collection<Commit> commits, Repository repository) {
+    public Map<Commit, String> getWebRepositoryUrlForCommits(Collection<Commit> commits, RepositoryDefinition repositoryDefinition) {
         Map<Commit, String> results = new HashMap<Commit, String>();
         for (Commit commit : commits) {
             results.put(commit, githubCommitUrl(commitIdFor(commit)));
@@ -84,7 +85,8 @@ public class GitHubWebRepositoryViewer extends DefaultWebRepositoryViewer implem
         return results;
     }
 
-    public String getWebRepositoryUrlForCommit(Commit commit, Repository repository) {
+    @Override
+    public String getWebRepositoryUrlForCommit(Commit commit, RepositoryDefinition repositoryDefinition) {
         return githubCommitUrl(commitIdFor(commit));
     }
 

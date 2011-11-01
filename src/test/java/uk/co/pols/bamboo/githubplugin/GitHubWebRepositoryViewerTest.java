@@ -8,6 +8,8 @@ import java.util.Arrays;
 import java.util.Map;
 
 import static com.google.common.collect.Lists.newArrayList;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.core.IsCollectionContaining.hasItem;
 import static uk.co.pols.bamboo.githubplugin.SampleCommitFactory.commitWithSingleFile;
 
 public class GitHubWebRepositoryViewerTest extends MockObjectTestCase {
@@ -17,8 +19,14 @@ public class GitHubWebRepositoryViewerTest extends MockObjectTestCase {
     private Commit commitWithFile = commitWithSingleFile("71b2bf41fb82a12ca3d4d34bd62568d9167dc6d6", "author", "comment");
     private CommitFile committedFile = SampleCommitFactory.commitFile("71b2bf41fb82a12ca3d4d34bd62568d9167dc6d6");
 
+
+    /* Still supports old version of for people running on pre github repo */
     public void testWorksWithTheAtlassianGitRepository() {
-        assertEquals(Arrays.asList("com.atlassian.bamboo.plugins.atlassian-bamboo-plugin-git:git"), gitHubViewer.getSupportedRepositories());
+        assertThat(gitHubViewer.getSupportedRepositories(), hasItem("com.atlassian.bamboo.plugins.atlassian-bamboo-plugin-git:git"));
+    }
+
+    public void testWorksWithTheAtlassianGitHubRepository() {
+        assertThat(gitHubViewer.getSupportedRepositories(), hasItem("com.atlassian.bamboo.plugins.atlassian-bamboo-plugin-git:gh"));
     }
 
     public void testCanSetTheWebRepositoryUrlFromTheUI() {
