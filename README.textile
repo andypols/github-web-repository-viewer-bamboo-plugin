@@ -2,8 +2,7 @@ h1. A GitHub Web Repository Viewer Plugin for the Bamboo build server
 
 Version 1.0.1
 
-This is a "Bamboo Web Repository Viewer Plugin":https://developer.atlassian.com/display/BAMBOODEV/Web+Repository+Viewer+Module for Github.  
-It automatically links your changes back to the the GitHub page containing the commit/diff.
+This is a "Bamboo Web Repository Viewer Plugin":https://developer.atlassian.com/display/BAMBOODEV/Web+Repository+Viewer+Module for Github.  It automatically links your changes back to the the GitHub page containing the commit/diff.
 
 Designed to work with Bamboo's built-in git (Bamboo version 3.0 or greater) and GitHub repositories.
 
