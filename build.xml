@@ -58,6 +58,10 @@
                 <include name="commons-configuration-*.jar"/>
                 <include name="commons-logging-*.jar"/>
                 <include name="commons-lang-*.jar"/>
+                <include name="webwork-*.jar"/>
+                <include name="xwork-*.jar"/>
+                <include name="spring-context-*.jar"/>
+                <include name="rife-continuations-*.jar"/>
                 <include name="oscore-*.jar"/>
                 <include name="log4j-*.jar"/>
                 <include name="guava-*.jar"/>
